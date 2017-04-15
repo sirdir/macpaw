@@ -12,9 +12,9 @@ exports.config = {
         count: 1
     },
     params: {
-        userName: 'MamkyEbal'+ curDate,
+        userName: 'WeWillMakeAmericaGreatAgain'+ curDate,
         fullName: 'White Trash',
-        email: 'MamkyEbal'+ curDate + '@mailinator.com',
+        email: 'WeWillMakeAmericaGreatAgain'+ curDate + '@mailinator.com',
         pwd: 'QWE!@#456'
     }
 }
