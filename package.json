@@ -1,0 +1,25 @@
+{
+  "name": "macpaw",
+  "version": "1.0.0",
+  "description": "test task",
+  "main": "conf.js",
+  "scripts": {
+    "test": "protractor conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirdir/macpaw.git"
+  },
+  "keywords": [
+    "protractor",
+    "macpaw",
+    "selenium",
+    "email"
+  ],
+  "author": "sirdir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sirdir/macpaw/issues"
+  },
+  "homepage": "https://github.com/sirdir/macpaw#readme"
+}
