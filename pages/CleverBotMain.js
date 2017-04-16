@@ -2,16 +2,27 @@
 var CleverBotMain = function () {
 
     this.get = () => {
-        browser.get('http://www.cleverbot.com/');
+        browser.sleep(5000);
+        // browser.get('http://www.cleverbot.com/');
+        browser.driver.get('http://www.cleverbot.com');
+        browser.sleep(5000);
+        browser.driver.wait(function() {
+            return browser.driver.isElementPresent(by.id('cbsocialsigninup'));
+        }, 5000);
     };
 
     this.openSignIn = () => {
-        $('#cbsocialsigninup').click();
+        browser.driver.findElement(by.id('cbsocialsigninup'))
+            .then((webElement) => {
+                webElement.click();
+            });
     };
 
     this.sayToBot = (phrase) => {
-        $('input.stimulus').sedKeys(phrase);
-        $('input.stimulus').sedKeys(protractor.Key.ENTER);
+        browser.driver.findElement(by.css('input.stimulus'))
+            .then(sedKeys(phrase));
+        browser.driver.findElement(by.css('input.stimulus'))
+            .then(sedKeys(protractor.Key.ENTER));
     };
 
 
