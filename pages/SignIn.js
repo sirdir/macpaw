@@ -11,7 +11,7 @@ var SignIn = function () {
     };
 
     this.getSuccessText = () => {
-        return $('#cbsocialmessagesignup>span').getText();
+        return browser.driver.findElement(by.css('#cbsocialmessagesignup>span')).getText();
     }
 
 };
