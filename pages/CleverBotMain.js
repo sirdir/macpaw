@@ -2,10 +2,8 @@
 var CleverBotMain = function () {
 
     this.get = () => {
-        browser.sleep(5000);
         // browser.get('http://www.cleverbot.com/');
         browser.driver.get('http://www.cleverbot.com');
-        browser.sleep(5000);
         browser.driver.wait(function() {
             return browser.driver.isElementPresent(by.id('cbsocialsigninup'));
         }, 5000);
