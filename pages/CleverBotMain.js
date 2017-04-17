@@ -2,27 +2,21 @@
 var CleverBotMain = function () {
 
     this.get = () => {
-        // browser.get('http://www.cleverbot.com/');
-        browser.driver.get('http://www.cleverbot.com');
-        browser.driver.wait(function() {
-            return browser.driver.isElementPresent(by.id('cbsocialsigninup'));
-        }, 5000);
+        browser.get('http://www.cleverbot.com/');
+        browser.wait(EC.titleIs('Cleverbot.com - a clever bot - speak to an AI with some Actual Intelligence?'), 5000);
+        browser.wait(EC.visibilityOf(element(By.id('cbsocialsigninup'))), 5000);
     };
 
     this.openSignIn = () => {
-        browser.driver.findElement(by.id('cbsocialsigninup'))
-            .then((webElement) => {
-                webElement.click();
-            });
+        dv.findElement(By.id('cbsocialsigninup')).click();
     };
 
     this.sayToBot = (phrase) => {
-        browser.driver.findElement(by.css('input.stimulus'))
+        dv.findElement(By.css('input.stimulus'))
             .then(sedKeys(phrase));
-        browser.driver.findElement(by.css('input.stimulus'))
+        dv.findElement(By.css('input.stimulus'))
             .then(sedKeys(protractor.Key.ENTER));
     };
-
 
 };
 
