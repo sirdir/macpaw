@@ -13,6 +13,7 @@ exports.config = {
     // },
     onPrepare: function(){
         global.dv = browser.driver;
+        global.EC = protractor.ExpectedConditions;
     },
     params: {
         userName: 'Donald_Trump' + curDate,
