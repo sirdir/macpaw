@@ -18,7 +18,7 @@ exports.config = {
     params: {
         userName: 'Donald_Trump' + curDate,
         fullName: 'White Trash',
-        email: 'WeWillMakeAmericaGreatAgain'+ curDate + '@mailinator.com',
+        email: 'Donald_Trump' + curDate + '@mailinator.com',
         pwd: 'QWE!@#456',
         text: "We have sent you an email. Please click on the link to verify your account. "
         + "Check your spam or junk folders if you don't see it soon.\n\n"
