@@ -14,11 +14,23 @@ var MailinatorBox = function () {
 
     this.getVerigicationURL = () => {
         browser.switchTo().frame($('#publicshowmaildivcontent').getWebElement());
-        let link = $('#inner a').getText();
+        let xuy = $('#inner a').getText();
         browser.switchTo().defaultContent();
-        return link.then(function (text) {
-            return text;
-        });
+        return xuy.then(link => {return link});
+
+
+        // this.getVerigicationURL = () => {
+        //     browser.switchTo().frame($('#publicshowmaildivcontent').getWebElement());
+        //     let linkProm = $('#inner a').getText();
+        //     let textProm = linkProm.then(function (xuy) {
+        //         return xuy.getText();
+        //     }, console.log('no text for you 1'));
+        //     let text = textProm.then(function (textInner) {
+        //         console.log(textInner + ' inner xuyiner');
+        //         return textInner;
+        //     }, console.log('no text for you 2'));
+        //     browser.switchTo().defaultContent();
+        //     return text;
     };
 };
 
