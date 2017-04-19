@@ -16,7 +16,7 @@ var MailinatorBox = function () {
         browser.switchTo().frame($('#publicshowmaildivcontent').getWebElement());
         let xuy = $('#inner a').getText();
         browser.switchTo().defaultContent();
-        return xuy.then(link => {return link});
+        return xuy;//.then(link => {return link});
 
 
         // this.getVerigicationURL = () => {

@@ -6,6 +6,10 @@ const MailinatorBoxPage = require('../pages/MailinatorBox.js');
 
 describe('register and talk with bot: ', function () {
     var client;
+    let username = browser.params.userName;
+    let fullName = browser.params.fullName;
+    let email = browser.params.email;
+    let pwd = browser.params.pwd;
     beforeAll(function () {
         jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000;
         // client = new ImapClient('imap.gmail.com', 993, {
@@ -25,27 +29,19 @@ describe('register and talk with bot: ', function () {
     it('chating', function () {
         cbMain.get();
         cbMain.openSignIn();
-        signIn.register(browser.params.userName, browser.params.fullName, browser.params.email, browser.params.pwd);
+        signIn.register(username, fullName, email, pwd);
         expect(signIn.getSuccessText()).toBe(browser.params.text);
-        mailinatorBox.get(browser.params.userName);
+        mailinatorBox.get(username);
         mailinatorBox.openFirstEmail();
-
-
         let verificationLink = mailinatorBox.getVerigicationURL();
         expect(verificationLink).toContain('www.cleverbot.com/');
+        verificationLink.then(link => {
+            browser.get("http://" + link);
+        });
+        expect(signIn.isVerivied()).toBe(true);
+        let actualName = signIn.login(username, pwd);
+        expect(actualName).toBe(username);
+        cbMain.sayToBot('hi');
 
-        browser.get("http://" + verificationLink);
-        // // browser.get(verificationLink.getText());
-        //
-        // // verificationLink.then(text => {
-        // //     browser.get(text);
-        // //     console.log(text);
-        // // });
-        //
-        // // });//browser.get(verificationLink.toString());
-        // link.then(text => {
-        //     console.log(text);
-        //     browser.get("http://"+text);
-        // });
     });
 });

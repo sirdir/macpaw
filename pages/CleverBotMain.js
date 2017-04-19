@@ -12,10 +12,8 @@ var CleverBotMain = function () {
     };
 
     this.sayToBot = (phrase) => {
-        dv.findElement(By.css('input.stimulus'))
-            .then(sedKeys(phrase));
-        dv.findElement(By.css('input.stimulus'))
-            .then(sedKeys(protractor.Key.ENTER));
+        dv.findElement(By.css('input.stimulus')).sendKeys(phrase);
+        dv.findElement(By.css('input.stimulus')).sendKeys(protractor.Key.ENTER);
     };
 
 };
