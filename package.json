@@ -25,6 +25,7 @@
   "devDependencies": {
     "protractor" : "^5.1.1",
     "wordwrap-protractor-jasmine2-html-reporter": "^0.0.11",
-    "jasmine-spec-reporter": "4.0.0"
+    "jasmine-spec-reporter": "4.0.0",
+    "shelljs": "^0.7.7"
   }
 }
