@@ -25,16 +25,14 @@ describe('register and talk with bot: ', function () {
         mailinatorBox.get(username);
         mailinatorBox.openFirstEmail();
         let verificationLink = mailinatorBox.getVerigicationURL();
-        expect(verificationLink).toContain('www.cleverbot.com/');//fixme with .toMatch()
-        verificationLink.then(link => {//fixme do wrapper
-            browser.get("http://" + link);
-        });
+        expect(verificationLink).toMatch(/www\.cleverbot\.com\/[a-z]{2}\/[a-z]{2}\/\d{6}\/[0-9|a-f]{12}/);
+        signIn.verify(verificationLink);
         expect(signIn.isVerivied()).toBe(true);
         let actualName = signIn.login(username, pwd);
         expect(actualName).toBe(username);
         cbMain.sayToBot(['hi', 'trubu shatal']);
     });
-    it('must fail', function() {
+    it('must fail for fun', function() {
         browser.get('https://www.wikipedia.org/');
         expect(0).toBeTruthy();
     });

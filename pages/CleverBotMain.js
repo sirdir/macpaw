@@ -3,7 +3,6 @@ var CleverBotMain = function () {
 
     this.get = () => {
         browser.get('http://www.cleverbot.com/');
-        browser.wait(EC.titleIs('Cleverbot.com - a clever bot - speak to an AI with some Actual Intelligence?'), 5000);
         browser.wait(EC.visibilityOf(element(By.id('cbsocialsigninup'))), 5000);
     };
 
@@ -16,11 +15,11 @@ var CleverBotMain = function () {
             array.forEach(item =>{
                 dv.findElement(By.css('input.stimulus')).sendKeys(item);
                 dv.findElement(By.css('input.stimulus')).sendKeys(protractor.Key.ENTER);
-                browser.sleep(5000); //FIXME to proper wait
+                browser.wait(EC.stalenessOf($('#avatarform.inprogress')),5000);
             })
         }
         else {
-            throw new Error('pls provide array of phrases');
+            throw new Error('pls provide array of strings');
         }
     };
 

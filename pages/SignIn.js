@@ -1,6 +1,15 @@
 'use strict';
 var SignIn = function () {
 
+    this.verify = function (url) {
+        url.then(url => {
+            if (!url.startsWith('http://' || !url.startsWith('https://'))){
+                url = 'http://' + url;
+            }
+            browser.get(url);
+        });
+    };
+
     this.isVerivied = function () {
         return dv.findElement(By.id('cbsocialmessagesignin')).isDisplayed();
     };

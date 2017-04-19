@@ -7,12 +7,6 @@ exports.config = {
     framework: 'jasmine',
     seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: ['./specs/chat.js'],
-    // capabilities: {
-    //     browserName: 'chrome',
-    //     shardTestFiles: true,
-    //     maxInstances: 1,
-    //     count: 1
-    // },
     onPrepare: function(){
         global.dv = browser.driver;
         global.EC = protractor.ExpectedConditions;
