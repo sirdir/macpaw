@@ -1,6 +1,6 @@
-var shell = require('shelljs');
-var Jasmine2HtmlReporter = require('wordwrap-protractor-jasmine2-html-reporter');
-var curDate = Date.now();
+let Jasmine2HtmlReporter = require('wordwrap-protractor-jasmine2-html-reporter');
+let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+let curDate = Date.now();
 
 
 exports.config = {
@@ -16,6 +16,13 @@ exports.config = {
                 savePath: './testresults/',
             })
         );
+
+        jasmine.getEnv().addReporter(
+            new SpecReporter({
+            spec: {
+                displayStacktrace: true
+            }
+        }));
 
     },
     params: {
