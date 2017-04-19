@@ -1,5 +1,7 @@
 var shell = require('shelljs');
+var Jasmine2HtmlReporter = require('wordwrap-protractor-jasmine2-html-reporter');
 var curDate = Date.now();
+
 
 exports.config = {
     framework: 'jasmine',
@@ -14,6 +16,13 @@ exports.config = {
     onPrepare: function(){
         global.dv = browser.driver;
         global.EC = protractor.ExpectedConditions;
+
+        jasmine.getEnv().addReporter(
+            new Jasmine2HtmlReporter({
+                savePath: './testresults/',
+            })
+        );
+
     },
     params: {
         userName: 'Trump' + curDate,

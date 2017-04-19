@@ -8,7 +8,7 @@ describe('register and talk with bot: ', function () {
     let email = browser.params.email;
     let pwd = browser.params.pwd;
     beforeAll(function () {
-        // jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000;
         dv.manage().window().maximize();
         signIn = new SignInPage();
         cbMain = new CleverBotMainPage();
@@ -25,14 +25,17 @@ describe('register and talk with bot: ', function () {
         mailinatorBox.get(username);
         mailinatorBox.openFirstEmail();
         let verificationLink = mailinatorBox.getVerigicationURL();
-        expect(verificationLink).toContain('www.cleverbot.com/');
-        verificationLink.then(link => {
+        expect(verificationLink).toContain('www.cleverbot.com/');//fixme with .toMatch()
+        verificationLink.then(link => {//fixme do wrapper
             browser.get("http://" + link);
         });
         expect(signIn.isVerivied()).toBe(true);
         let actualName = signIn.login(username, pwd);
         expect(actualName).toBe(username);
         cbMain.sayToBot(['hi', 'trubu shatal']);
-
+    });
+    it('must fail', function() {
+        browser.get('https://www.wikipedia.org/');
+        expect(0).toBeTruthy();
     });
 });
