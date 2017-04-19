@@ -3,12 +3,15 @@ const CleverBotMainPage = require('../pages/CleverBotMain.js');
 const MailinatorBoxPage = require('../pages/MailinatorBox.js');
 
 describe('register and talk with bot: ', function () {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000;
     let username = browser.params.userName;
     let fullName = browser.params.fullName;
     let email = browser.params.email;
     let pwd = browser.params.pwd;
+    let expectedText = browser.params.text;
+    let phrases = ['hi', 'trubu shatal', 42];
+    let regExpVerLink = /www\.cleverbot\.com\/[a-z]{2}\/[a-z]{2}\/\d{6}\/[0-9|a-f]{12}/;
     beforeAll(function () {
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000;
         dv.manage().window().maximize();
         signIn = new SignInPage();
         cbMain = new CleverBotMainPage();
@@ -17,20 +20,21 @@ describe('register and talk with bot: ', function () {
     beforeEach(function () {
         browser.ignoreSynchronization = true;
     });
-    it('chating', function () {
+    it('chatting with bot', function () {
         cbMain.get();
         cbMain.openSignIn();
         signIn.register(username, fullName, email, pwd);
-        expect(signIn.getSuccessText()).toBe(browser.params.text);
+        let actualText = signIn.getSuccessText();
+        expect(actualText).toBe(expectedText);
         mailinatorBox.get(username);
         mailinatorBox.openFirstEmail();
-        let verificationLink = mailinatorBox.getVerigicationURL();
-        expect(verificationLink).toMatch(/www\.cleverbot\.com\/[a-z]{2}\/[a-z]{2}\/\d{6}\/[0-9|a-f]{12}/);
+        let verificationLink = mailinatorBox.getVerificationURL();
+        expect(verificationLink).toMatch(regExpVerLink);
         signIn.verify(verificationLink);
-        expect(signIn.isVerivied()).toBe(true);
+        expect(signIn.isVerified()).toBe(true);
         let actualName = signIn.login(username, pwd);
         expect(actualName).toBe(username);
-        cbMain.sayToBot(['hi', 'trubu shatal']);
+        cbMain.sayToBot(phrases);
     });
     it('must fail for fun', function() {
         browser.get('https://www.wikipedia.org/');

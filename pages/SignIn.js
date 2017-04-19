@@ -1,5 +1,5 @@
 'use strict';
-var SignIn = function () {
+let SignIn = function () {
 
     this.verify = function (url) {
         url.then(url => {
@@ -10,7 +10,7 @@ var SignIn = function () {
         });
     };
 
-    this.isVerivied = function () {
+    this.isVerified = function () {
         return dv.findElement(By.id('cbsocialmessagesignin')).isDisplayed();
     };
 

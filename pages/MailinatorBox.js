@@ -1,5 +1,5 @@
 'use strict';
-var MailinatorBox = function () {
+let MailinatorBox = function () {
 
     this.get = (user) => {
         browser.get('https://www.mailinator.com/inbox2.jsp?public_to=' + user + '#/#public_maildirdiv');
@@ -12,7 +12,7 @@ var MailinatorBox = function () {
         browser.wait(EC.visibilityOf($('div#public_showmaildiv')), 5000);
     };
 
-    this.getVerigicationURL = () => {
+    this.getVerificationURL = () => {
         browser.switchTo().frame($('#publicshowmaildivcontent').getWebElement());
         let text = $('#inner a').getText();
         browser.switchTo().defaultContent();

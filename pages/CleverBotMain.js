@@ -1,21 +1,23 @@
 'use strict';
-var CleverBotMain = function () {
+let CleverBotMain = function () {
+    let signUpBtn = By.id('cbsocialsigninup');
+    let input = By.css('input.stimulus');
 
     this.get = () => {
         browser.get('http://www.cleverbot.com/');
-        browser.wait(EC.visibilityOf(element(By.id('cbsocialsigninup'))), 5000);
+        browser.wait(EC.visibilityOf(element(signUpBtn)), 5000);
     };
 
     this.openSignIn = () => {
-        dv.findElement(By.id('cbsocialsigninup')).click();
+        dv.findElement(signUpBtn).click();
     };
 
     this.sayToBot = (array) => {
         if (typeof array === 'object' && array instanceof Array){
             array.forEach(item =>{
-                dv.findElement(By.css('input.stimulus')).sendKeys(item);
-                dv.findElement(By.css('input.stimulus')).sendKeys(protractor.Key.ENTER);
-                browser.wait(EC.stalenessOf($('#avatarform.inprogress')),5000);
+                dv.findElement(input).sendKeys(item.toString());
+                dv.findElement(input).sendKeys(protractor.Key.ENTER);
+                browser.wait(EC.stalenessOf($('#avatarform.inprogress')), 15000);
             })
         }
         else {
