@@ -11,9 +11,17 @@ var CleverBotMain = function () {
         dv.findElement(By.id('cbsocialsigninup')).click();
     };
 
-    this.sayToBot = (phrase) => {
-        dv.findElement(By.css('input.stimulus')).sendKeys(phrase);
-        dv.findElement(By.css('input.stimulus')).sendKeys(protractor.Key.ENTER);
+    this.sayToBot = (array) => {
+        if (typeof array === 'object' && array instanceof Array){
+            array.forEach(item =>{
+                dv.findElement(By.css('input.stimulus')).sendKeys(item);
+                dv.findElement(By.css('input.stimulus')).sendKeys(protractor.Key.ENTER);
+                browser.sleep(5000); //FIXME to proper wait
+            })
+        }
+        else {
+            throw new Error('pls provide array of phrases');
+        }
     };
 
 };

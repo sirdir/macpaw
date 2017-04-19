@@ -3,7 +3,7 @@ var MailinatorBox = function () {
 
     this.get = (user) => {
         browser.get('https://www.mailinator.com/inbox2.jsp?public_to=' + user + '#/#public_maildirdiv');
-        browser.wait(EC.textToBePresentInElementValue($('#publicinboxfield'), user.toLowerCase()), 10000);
+        browser.wait(EC.textToBePresentInElementValue($('#publicinboxfield'), user.toLowerCase()), 25000);
     };
 
     this.openFirstEmail = () => {
@@ -14,23 +14,9 @@ var MailinatorBox = function () {
 
     this.getVerigicationURL = () => {
         browser.switchTo().frame($('#publicshowmaildivcontent').getWebElement());
-        let xuy = $('#inner a').getText();
+        let text = $('#inner a').getText();
         browser.switchTo().defaultContent();
-        return xuy;//.then(link => {return link});
-
-
-        // this.getVerigicationURL = () => {
-        //     browser.switchTo().frame($('#publicshowmaildivcontent').getWebElement());
-        //     let linkProm = $('#inner a').getText();
-        //     let textProm = linkProm.then(function (xuy) {
-        //         return xuy.getText();
-        //     }, console.log('no text for you 1'));
-        //     let text = textProm.then(function (textInner) {
-        //         console.log(textInner + ' inner xuyiner');
-        //         return textInner;
-        //     }, console.log('no text for you 2'));
-        //     browser.switchTo().defaultContent();
-        //     return text;
+        return text;
     };
 };
 

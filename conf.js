@@ -16,9 +16,9 @@ exports.config = {
         global.EC = protractor.ExpectedConditions;
     },
     params: {
-        userName: 'Donald_Trump' + curDate,
+        userName: 'Trump' + curDate,
         fullName: 'White Trash',
-        email: 'Donald_Trump' + curDate + '@mailinator.com',
+        email: 'Trump' + curDate + '@mailinator.com',
         pwd: 'QWE!@#456',
         text: "We have sent you an email. Please click on the link to verify your account. "
         + "Check your spam or junk folders if you don't see it soon.\n\n"
