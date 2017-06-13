@@ -1,7 +1,7 @@
 'use strict';
 let SignIn = function () {
 
-    this.verify = function (url) {
+    this.verify = (url) => {
         url.then(url => {
             if (!url.startsWith('http://' || !url.startsWith('https://'))){
                 url = 'http://' + url;
@@ -10,11 +10,11 @@ let SignIn = function () {
         });
     };
 
-    this.isVerified = function () {
+    this.isVerified = () => {
         return dv.findElement(By.id('cbsocialmessagesignin')).isDisplayed();
     };
 
-    this.login = function (username, pwd) {
+    this.login = (username, pwd) => {
         dv.findElement(By.css('#cbsocialmessagesignin ~ input[name="username"]')).sendKeys(username);
         dv.findElement(By.css('#cbsocialmessagesignin ~ input.passwordclear')).click();
         dv.findElement(By.css('#cbsocialmessagesignin ~ input.passwordnormal')).sendKeys(pwd);
